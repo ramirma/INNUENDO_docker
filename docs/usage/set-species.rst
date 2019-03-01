@@ -6,7 +6,7 @@ protocol or workflow needs to be associated with a species. The scope of the
 INNUENDO Project was to develop analysis strategies from 4 target species:
 *Escherichia coli*, *Yersinia enterocolitica*, *Salmonella enterica* and
 *Campylobacter jejuni*. However, the platform is scalable to add any other
-species upon some configuration. In this example we are going to exemplify on
+species given some configuration. In this example we are going to exemplify 
 how to add **speciesA**.
 
 **NOTE: Most of the modifications required are in the INNUENDO_REST_API application.**
@@ -15,7 +15,7 @@ how to add **speciesA**.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each species in the INNUENDO Platform has a dedicated wgMLST profile database.
-As so, a new model for it needs to be added inside the `app/models/models.py` file
+Therefore, a new model for it needs to be added inside the `app/models/models.py` file
 of the `INNUENDO_REST_API` app.
 
 ::
@@ -50,20 +50,20 @@ of the `INNUENDO_REST_API` app.
         timestamp = db.Column(db.DateTime)
 
 This new model needs to be loaded with `manage.py` in case of installation
-from source. In case of the docker-compose verison, it will be loaded
+from source. In case of the docker-compose version, it will be loaded
 automatically on start.
 
 2 - Import model on app_configuration.py
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The model needs then to be imported to be used by the application. This can be
-made by importing it at `app/app_configuration.py` of the `INNUENDO_REST_API` app.
-The `species_correspondece` dictionary needs also to be updated to allow
+done by importing it at `app/app_configuration.py` of the `INNUENDO_REST_API` app.
+The `species_correspondence` dictionary needs also to be updated to allow
 association of the models with a key.
 
 ::
 
-    # Example of adding speciesA to the model imports at app/app_configuration.py
+    # Example of adding SpeciesA to the model imports at app/app_configuration.py
     from app.models.models import Ecoli, Yersinia, Salmonella, Campylobacter, SpeciesA
 
     # Change the species_correspondece object to associate model with a key
@@ -278,6 +278,6 @@ These modifications are required on both `INNUENDO_REST_API` and
         "SpeciesA": "GenomeSize"
     }
 
-To know on how to create the required legacy database files, check the
+To know how to create the required legacy database files, check the
 *Set legacy database* section.
 
